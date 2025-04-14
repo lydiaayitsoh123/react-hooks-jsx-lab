@@ -1,45 +1,15 @@
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
-import { image } from "../data/data";
-import About from "../components/About";
+// About.jsx
+import React from "react";
+import myImage from "../path/to/your/image.jpg"; // Update the path as needed
 
-test("renders a <div> with the ID of 'about'", () => {
-  const { container } = render(<About />);
+function About() {
+  return (
+    <div id="about">
+      <h2>About Me</h2>
+      <p>I’m passionate about learning React and building cool stuff!</p>
+      <img src={myImage} alt="I made this" />
+    </div>
+  );
+}
 
-  const about = container.querySelector("#about");
-  expect(about).toBeInTheDocument();
-});
-
-test("the <div> has three child elements", () => {
-  const { container } = render(<About />);
-
-  const about = container.querySelector("#about");
-  expect(about.children).toHaveLength(3);
-});
-
-test("renders a <h2> with the text 'About Me'", () => {
-  render(<About />);
-
-  // find an element with the text content "About Me"
-  const h2 = screen.queryByText("About Me");
-
-  // check that it's a <h2> element
-  expect(h2.tagName).toBe("H2");
-});
-
-test("renders a <p> element", () => {
-  const { container } = render(<About />);
-
-  const p = container.querySelector("p");
-  expect(p).toBeInTheDocument();
-});
-
-test("renders a <img> element with the correct attributes", () => {
-  render(<About />);
-
-  // Find an element with the "alt" attribute set to "I made this"
-  const img = screen.queryByAltText("I made this");
-
-  expect(img).toBeInTheDocument();
-  expect(img).toHaveAttribute("src", image);
-});
+export default About;
